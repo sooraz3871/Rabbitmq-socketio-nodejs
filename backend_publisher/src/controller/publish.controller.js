@@ -6,15 +6,14 @@ const { randomMessageGenerator } = require("../helpers/randomwords.helper");
 const PublishMessage = () => {
   const message = randomMessageGenerator();
 
-  publishToQue(message).catch(() =>
-    console.log("Establishing connection to Rabbitmq")
-  );
+  publishToQue(message);
 
 };
 
 const publishToQue = async (msg) => {
-  const { AMQP_URL: amqp_url } = process.env;
+  
   const {
+    AMQP_URL: amqp_url,
     AMQP_EXCHANGE: exchange,
     AMQP_QUEUE: queue,
     AMQP_ROUTING_KEY: routingKey,
