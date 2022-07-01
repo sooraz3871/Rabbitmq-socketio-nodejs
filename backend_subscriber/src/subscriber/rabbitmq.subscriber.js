@@ -5,12 +5,8 @@ const ampqplib = require("amqplib");
 const { filterByPriorityAndSend } = require("../helpers/filter.messages.helper");
 
 const subscribe = async (socket) => {
-  const { AMQP_URL: amqp_url } = process.env;
-  const {
-  
-    AMQP_QUEUE: queue
-    } = process.env;
-  try {
+  const { AMQP_URL: amqp_url ,AMQP_QUEUE: queue } = process.env;
+   try {
     let rawMessage = [];
     console.log("<<<<<<< receiving >>>>>>>>>>");
     const conn = await ampqplib.connect(amqp_url,'heartbeat=60');
