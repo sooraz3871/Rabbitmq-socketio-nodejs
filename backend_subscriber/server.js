@@ -8,10 +8,13 @@ const server = http.createServer(app);
 const dotenv = require("dotenv");
 const { Server } = require("socket.io");
 const {subscribe} = require("./src/subscriber/rabbitmq.subscriber");
+const {router} = require('./src/routes/routes');
+
 
 
 dotenv.config();
 app.use(cors());
+app.use('/v1/api',router);
 
 
 const io = new Server(server,{
@@ -38,10 +41,6 @@ process.on("uncaughtException", function (err) {
   // Handle the error safely
   console.log(err);
 });
-
-app.get('/health-check',(req,res)=>{
-  res.status(200).send("Subscriber Working");
-})
 
 
 server.listen(process.env.SERVER_PORT, () => {
