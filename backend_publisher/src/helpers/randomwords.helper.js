@@ -2,7 +2,7 @@
 
 const randomWords = require("random-words");
 
-const randomMessageGenerator = () => {
+exports.randomMessageGenerator = () => {
   let randomMsg = [];
 
   for (let index = 0; index < 20; index++) {
@@ -34,4 +34,4 @@ const getRandomInt = (min, max) => {
   return Math.floor(Math.random() * (max - min) + min);
 };
 
-module.exports = { randomMessageGenerator };
+

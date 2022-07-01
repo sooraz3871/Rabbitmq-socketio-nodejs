@@ -3,7 +3,7 @@
 const ampqplib = require("amqplib");
 const { randomMessageGenerator } = require("../helpers/randomwords.helper");
 
-const PublishMessage = () => {
+exports.PublishMessage = () => {
   const message = randomMessageGenerator();
 
   publishToQue(message).catch(() =>
@@ -34,4 +34,4 @@ const publishToQue = async (msg) => {
   }
 };
 
-module.exports = { PublishMessage };
+

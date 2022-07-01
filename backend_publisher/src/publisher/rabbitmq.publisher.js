@@ -2,7 +2,7 @@
 
 const ampqplib = require("amqplib");
 
-const publish = async (msg) => {
+exports.publish = async (msg) => {
   const { AMQP_URL: amqp_url } = process.env;
   const {
     AMQP_EXCHANGE: exchange,
@@ -22,4 +22,4 @@ const publish = async (msg) => {
   }
 };
 
-module.exports = { publish };
+

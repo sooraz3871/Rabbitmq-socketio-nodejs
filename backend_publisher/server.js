@@ -7,7 +7,7 @@ const app = express();
 
 
 
-const {router} = require('./src/routes/routes');
+const router = require('./src/routes/routes');
 const { PublishMessage } = require("./src/controller/publish.controller");
 
 dotenv.config();

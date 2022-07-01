@@ -15,4 +15,4 @@ router.get('/health-check',(req,res)=>{
 
 
 
-module.exports={router}
+module.exports=router
