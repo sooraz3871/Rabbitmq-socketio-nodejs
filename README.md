@@ -8,9 +8,11 @@ Reactjs acts as a client.
 
 
 ### To run the app
-1. Clone the repo on your local machine </br> 
-2. Run docker-compose up </br> 
-3. check http://localhost:3000
+1. Clone the repo on your local machine - master branch </br> 
+2. Make sure your local machine has the Docker running.
+3. Run docker-compose up </br> 
+4. After the applications starts completely check http://localhost:3000
+
 
 
 ## Performing health checks 
