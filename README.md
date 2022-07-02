@@ -1,4 +1,4 @@
-# Rabbitmq-socketio-Nodejs-Reactjs
+# Rabbitmq-socket.io-Nodejs-Reactjs
 
 
 ## About the application Architecture
@@ -13,7 +13,7 @@ Reactjs acts as a client.
 3. check localhost:3000
 
 
-##Performing health checks 
+## Performing health checks 
 
 1. for publisher check http://localhost:4000/v1/api/health-check </br>
 2. for subscriber check http://localhost:4001/v1/api/health-check
