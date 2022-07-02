@@ -2,7 +2,7 @@
 'use strict'
 
 
-const filterByPriorityAndSend = (messages,socket) => {
+exports.filterByPriorityAndSend = (messages,socket) => {
     
     const rawMessages=JSON.parse(messages);
       const newArr = rawMessages.filter(item=>{
@@ -16,5 +16,3 @@ const filterByPriorityAndSend = (messages,socket) => {
       }
 
 }
-
-module.exports ={filterByPriorityAndSend}

@@ -4,7 +4,7 @@
 const ampqplib = require("amqplib");
 const { filterByPriorityAndSend } = require("../helpers/filter.messages.helper");
 
-const subscribe = async (socket) => {
+exports.subscribe = async (socket) => {
   const { AMQP_URL: amqp_url ,AMQP_QUEUE: queue } = process.env;
    try {
     let rawMessage = [];
@@ -28,4 +28,3 @@ const subscribe = async (socket) => {
   }
 };
 
-module.exports = { subscribe };

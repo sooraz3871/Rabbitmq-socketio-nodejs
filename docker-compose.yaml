@@ -18,12 +18,13 @@ services:
     ports:
       - "4000:8000"
     networks:
-        - rabbitmq_nodejs 
+        - rabbitmq_nodejs
     environment:
-         - AMQP_URL: amqp://guest:guest@rabbitmq:5672  
-         - AMQP_EXCHANGE: random_message_exchange
-         - AMQP_QUEUE: random_message_queue     
-         - AMQP_ROUTING_KEY: AA2022
+         - SERVER_PORT=8000
+         - AMQP_URL=amqp://guest:guest@rabbitmq:5672  
+         - AMQP_EXCHANGE=random_message_exchange
+         - AMQP_QUEUE=random_message_queue     
+         - AMQP_ROUTING_KEY=AA2022
     depends_on:
         - rabbitmq
 
@@ -33,13 +34,14 @@ services:
     ports:
       - "4001:8001"
     networks:
-        - rabbitmq_nodejs  
+        - rabbitmq_nodejs
     depends_on:
         - rabbitmq
     environment:
-         - AMQP_URL: amqp://guest:guest@rabbitmq:5672  
-         - AMQP_EXCHANGE: random_message_exchange
-         - AMQP_QUEUE: random_message_queue    
+         - SERVER_PORT=8001
+         - AMQP_URL=amqp://guest:guest@rabbitmq:5672  
+         - AMQP_EXCHANGE=random_message_exchange
+         - AMQP_QUEUE=random_message_queue    
 
   frontend:
     build: ./client
@@ -47,7 +49,7 @@ services:
     ports:
       - "3000:3000" 
     networks:
-      - rabbitmq_nodejs 
+      - rabbitmq_nodejs
     stdin_open: true
     tty: true
     depends_on:
