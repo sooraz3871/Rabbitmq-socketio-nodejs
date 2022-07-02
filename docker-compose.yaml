@@ -1,0 +1,60 @@
+version: "3.9"
+services:
+  rabbitmq:
+    image: rabbitmq:3.8-management-alpine
+    container_name: "rabbitmq"
+    ports:
+        - 5673:5672
+        - 15673:15672
+    volumes:
+        - ~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/
+        - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq
+    networks:
+        - rabbitmq_nodejs
+
+  publisher_backend:
+    build: ./backend_publisher
+    container_name: publisher_api
+    ports:
+      - "4000:8000"
+    networks:
+        - rabbitmq_nodejs
+    environment:
+         - SERVER_PORT=8000
+         - AMQP_URL=amqp://guest:guest@rabbitmq:5672  
+         - AMQP_EXCHANGE=random_message_exchange
+         - AMQP_QUEUE=random_message_queue     
+         - AMQP_ROUTING_KEY=AA2022
+    depends_on:
+        - rabbitmq
+
+  subscriber_backend:
+    build: ./backend_subscriber
+    container_name: subscriber_api
+    ports:
+      - "4001:8001"
+    networks:
+        - rabbitmq_nodejs
+    depends_on:
+        - rabbitmq
+    environment:
+         - SERVER_PORT=8001
+         - AMQP_URL=amqp://guest:guest@rabbitmq:5672  
+         - AMQP_EXCHANGE=random_message_exchange
+         - AMQP_QUEUE=random_message_queue    
+
+  frontend:
+    build: ./client
+    container_name: client_ui
+    ports:
+      - "3000:3000" 
+    networks:
+      - rabbitmq_nodejs
+    stdin_open: true
+    tty: true
+    depends_on:
+      - subscriber_backend
+      
+networks:
+  rabbitmq_nodejs:
+    driver: bridge        
