@@ -11,7 +11,14 @@ Reactjs acts as a client.
 1. Clone the repo on your local machine - master branch </br> 
 2. Make sure your local machine has the Docker running.
 3. Run docker-compose up </br> 
-4. After the applications starts completely check http://localhost:3000
+4. Check the terminal logs if rabbitmq is connected and authorized for guest. 
+5. Goto http://localhost:15673
+6. login with username and password - guest 
+7. create a new exchange  'random_message_exchange'
+8. create a new queue 'random_message_queue'
+9. bind the exchange with the queue with the routing key 'AA2022'
+10. You should see the published messages in the queue after some time in the rabbitmq management ui
+11. check http://localhost:3000
 
 
 
